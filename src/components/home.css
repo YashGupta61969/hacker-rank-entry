@@ -1,0 +1,82 @@
+.HomePage{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.input_card{
+    padding: 2rem;
+    width: 55%;
+    border-radius: 1rem;
+    min-width: 30rem;
+    background-color:  rgb(194, 194, 194);
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.input_card label{
+    font-size: 1.2rem;
+}
+
+.input_card input{
+    padding: 8px 1rem;
+    margin: 5px 0 1rem 0;
+}
+
+.input_card button{
+    background-color: rgb(27, 27, 27);
+    color: white;
+    padding: 8px 0;
+    font-size: 1.8rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.search_bar{
+    margin-top:2rem;
+    padding: 2rem;
+    width: 55%;
+    border-radius: 1rem;
+    min-width: 30rem;
+    background-color: rgb(194, 194, 194);
+}
+
+.search_bar input{
+    width: 100%;
+    padding: 8px;
+}
+
+.product_list{
+    padding: 2rem;
+    width: 55%;
+    border-radius: 1rem;
+    min-width: 30rem;
+    background-color:  rgb(194, 194, 194);
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+}
+
+.product_list h1{
+    text-align: center;
+    font-size: 2.2rem;
+}
+
+.product{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: rgb(150, 150, 150);
+    border-radius: 1rem;
+    padding: 1rem;
+    align-items: center;
+}
+
+.product p{
+    font-weight: 800;
+}
