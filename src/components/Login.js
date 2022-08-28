@@ -35,7 +35,6 @@ function Login() {
       }).catch(err => alert(err))
 
   }
-  
   useEffect(() => {
     if (localStorage.getItem('user')) {
       navigate('/')
