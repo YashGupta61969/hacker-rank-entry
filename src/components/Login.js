@@ -1,42 +1,46 @@
-import React,{useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import './login.css'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
   const navigate = useNavigate();
-  const [user,setUser] = useState({})
+  const [user, setUser] = useState({})
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = (e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    setUser({email,password});
+    setUser({ email, password });
 
-    fetch('https://reqres.in/api/login',{
-      method:'POST',
-      headers:{
-        'content-type':'application/json'
+    fetch('https://reqres.in/api/login', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
       },
-      body:JSON.stringify(user),
+      body: JSON.stringify(user),
     })
-    .then(resp=>resp.json()).then(data=>{
-      if(data.error){
-        if(data.error.search('found')){
-         alert('Wrong Password')
-        }else if(data.error.search('email')){
-          alert(data.error)
+      .then(resp => resp.json())
+      .then(data => {
+        if (data.error) {
+          if (data.error.search('found')) {
+            alert('Wrong Password')
+          } else if (data.error.search('email')) {
+            alert(data.error)
+          }
+        } else {
+          localStorage.setItem("user", email);
+          navigate('/')
         }
-      }else{localStorage.setItem("user", email);navigate('/')}
-    }).catch(err=>alert(err))
-    
+      }).catch(err => alert(err))
+
   }
 
-  useEffect(()=>{
-    if(localStorage.getItem('user')){
+  useEffect(() => {
+    if (localStorage.getItem('user')) {
       navigate('/')
     }
-  },[])
+  }, [])
 
   return (
     <div className='loginPage'>
@@ -44,11 +48,11 @@ function Login() {
         <span className='login_head'>Log In</span>
         <label htmlFor="email">Email</label>
 
-        <input className='login_input' type="text" required value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='Email' />   
+        <input className='login_input' type="text" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' />
 
         <label htmlFor="password">Password</label>
-        
-        <input className='login_input' type="password" value={password} required onChange={(e)=>setPassword(e.target.value)}placeholder='Password' />
+
+        <input className='login_input' type="password" value={password} required onChange={(e) => setPassword(e.target.value)} placeholder='Password' />
         <button className='login_btn'>Log In</button>
       </form>
     </div>

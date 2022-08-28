@@ -20,7 +20,7 @@ function Home() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setProducts(prev => [...prev, { id: Math.random(), productName, productPrice }])
+        setProducts(prev => [...prev, { productName, productPrice }])
         setProductName('')
         setProductPrice('')
     }
@@ -44,15 +44,23 @@ function Home() {
             <div className="product_list">
                 <h1>Your Products</h1>
                 {
-                    products.length ? products.filter(val => {
+                    products.length ? products.reduce((acc, val)=>{
+                        let obj = acc.find(item=>item.productName === val.productName)
+
+                        if(obj){
+                            return acc
+                        }
+
+                        return acc.concat([val])
+                    },[]).filter(val => {
                         if (searchData === '') {
                             return val
                         } else if (val.productName.toLowerCase().includes(searchData.toLocaleLowerCase())) {
                             return val
-                        } else return val
-                    }).map(product => {
-                        return <Product key={product.id} id={product.id} name={product.productName} price={product.productPrice}/>
-                    }) : <p style={{ textAlign: 'center', marginTop: '1rem' }}>No Products Found</p>
+                        }
+                    }).map((product, index) => {
+                        return <Product key={index} id={index} name={product.productName} price={product.productPrice}/>
+                    }) : <p>No Products Found</p>
                 }
             </div>
         </div>
