@@ -22,16 +22,12 @@ function Login() {
     })
       .then(resp => resp.json())
       .then(data => {
-        if (data.error) {
-          if (data.error.search('found')) {
-            alert('Wrong Password')
-          } else if (data.error.search('email')) {
-            alert(data.error)
-          }
-        } else {
+        if(data.token){
           localStorage.setItem("user", email);
           navigate('/')
-        }
+        }  else{
+          alert(data.error)
+         }
       }).catch(err => alert(err))
 
   }
